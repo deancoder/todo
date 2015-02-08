@@ -1,0 +1,47 @@
+from django.shortcuts import render
+
+import json
+from django.template import RequestContext
+import datetime
+import time
+import json
+import random
+from datetime import date
+from django.contrib import messages
+from django.http import HttpResponse
+from django.db import transaction
+from django.shortcuts import render, render_to_response, redirect
+from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.template import RequestContext
+from django.contrib.auth.decorators import login_required
+
+
+def index(request):
+    #indent = Indent.objects.all()
+    #items = Item.objects.all()
+    return render_to_response("dailytask/index.html",)
+
+
+def home(request):
+    #indent = Indent.objects.all()
+    #items = Item.objects.all()
+    return render_to_response("dailytask/index.html",)
+
+
+def newtask(request):
+    #indent = Indent.objects.all()
+    #items = Item.objects.all()
+    return render_to_response("dailytask/index.html",)
+
+
+def todaytask(request):
+    #indent = Indent.objects.all()
+    #items = Item.objects.all()
+    return render_to_response("dailytask/index.html",)
+
+def alltask(request):
+    #indent = Indent.objects.all()
+    #items = Item.objects.all()
+    return render_to_response("dailytask/index.html",)
+
+# Create your views here.

@@ -13,6 +13,8 @@
 
     <!-- Bootstrap core CSS -->
     <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    
 
     <!-- Custom styles for this template -->
     <link href="/static/css/main.css" rel="stylesheet">
@@ -82,7 +84,7 @@
 				<div class="table-responsive col-lg-12">
                             <div class="panel panel-default gradient-diag1" id="enq-report">
 								<input type="text" class="form-control hidden" value="{{ email }}" name="email" id="email">
-                                <table class="table table-clean datatable" data-scroll=".oc-scroll"  id="table-pagination" data-url="data2.json" data-height="400" data-pagination="true" data-search="true">
+                                <table class="table table-clean datatable"  id="table-pagination" data-url="data2.json" data-height="400" data-pagination="true" data-search="true">
                                     <thead>
                                     <tr>
                                         <th>Sl</th>
@@ -115,8 +117,8 @@
 	</div><!-- /headerwrap -->
 	
 	
-    <script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css"></script>
-    <script src="http://jdewit.github.io/bootstrap-timepicker/css/bootstrap-timepicker.min.css"></script>
+    <!--<script src="//netdna.bootstrapcdn.com/bootstrap/2.3.2/css/bootstrap.min.css"></script>
+    <script src="http://jdewit.github.io/bootstrap-timepicker/css/bootstrap-timepicker.min.css"></script>-->
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
@@ -158,11 +160,11 @@
     //$(".completed").click(function ()  {
     $(".table-responsive").on("click",".completed",function() {
         var row = $(this).parents('.item-row');
-        alert(row);
+        //alert(row);
         //var wid = row.find('.workid').val();
         var wid = $(this).attr("id");
         var email = $("#email").val();
-        alert(wid);
+        //alert(wid);
         var conf = confirm("This task is completed!");
 		if (conf) {
         $.ajax({
@@ -170,8 +172,9 @@
             url: "/dairy",
             data: {"email": email, "wid": wid, "action": "completed" }
         }).success(function( msg ) {
-			alert(msg);
-             $(this).addClass('btn-warning')
+			//alert(msg);
+             //$(this).html("DONE");
+             $('#'.wid).hide();
         });
 	}
     });    
@@ -180,7 +183,7 @@
     $(".deleted").click(function ()  {
         var row = $(this).parents('.item-row');
         var wid = $(this).attr("id");
-        alert(wid);
+        //alert(wid);
         var email = $("#email").val();
         var conf = confirm("Are you sure you want to delete this task!");
 		if (conf) {
@@ -189,7 +192,7 @@
             url: "/dairy",
             data: {"email": email, "wid": wid, "action": "deleted" }
         }).success(function( msg ) {
-			alert(msg);
+			//alert(msg);
              $(this).addClass('btn-warning')
         });
 	}

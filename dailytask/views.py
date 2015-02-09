@@ -53,21 +53,24 @@ def home(request):
 
 def dairy(request):
 	if request.method == "GET":
-		email = request.GET("email")
+		email = request.user
 		todolist = TodayTask.objects.filter(email = email, status = 'OPEN')
 		print 'email', email
 		return render_to_response("workdairy.html",{'todos': todolist, 'email': email }, context_instance=RequestContext(request))
 	elif request.is_ajax():
 		email = request.POST.get("email")
 		wid = request.POST.get("wid")
-		print "wid", wid
+		action = request.POST.get("action")
+		print "wid",
 		if TodayTask.objects.filter(pk=wid).exists():
-			task = TodayTask.objects.filter(pk=wid)
+			task = TodayTask.objects.get(pk=wid)
 			if(action == 'completed'):
 				task.status = 'COMPLETED';
 			else:
 				task.status = 'CLOSE';
 			task.save()
+		content = {'msg': 'true'}
+		return HttpResponse(json.dumps(content), mimetype='application/json')
 	elif request.method == "POST":
 		email = request.POST.get("email")
 		print "dairy", email
